@@ -78,6 +78,7 @@ From the Drupal console, log in with admin/admin and start adding content.
 ### Image Details
 
 Based on          | [Ricardo Amaro](https://github.com/ricardoamaro/docker-drupal.git)
+
 Pre-built Image   | [https://registry.hub.docker.com/u/dell/drupal](https://registry.hub.docker.com/u/dell/drupal)
 
 
