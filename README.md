@@ -14,22 +14,21 @@ PHP        | 5.4.4      | Scripting language
 
 ## Usage
 
-### Basic Example
+### Start the Container
 Start your image binding host port 8080 to port 80 (Apache Web Server) and 443:443 (HTTPS port) in your container:
 
     docker run -d -t -p 8080:80 -p 443:443 dell/drupal
 
-## Test your deployment:
+### Test your deployment:
 
 You can test your deployment by accessing Drupal console at:
 
-    http://instance_ip:8080
+    http://localhost:8080
     
  or
  
-    https://instance_ip
+    https://localhost
     
-(The container IP can be obtained by using "docker inspect ")    
 Before accessing the Drupal console through HTTPS, you must accept the SSL certificate.
 
 You can also test the application with cURL command:
@@ -40,19 +39,6 @@ You can also test the application with cURL command:
 ## Complete the installation
 From the Drupal console, log in with admin/admin and start adding content.
 
-## Administration
-Under construction.
-
-### Connecting to MySQL
-Under construction.
-
-### Updating the Application
-Under construction.
-
-### Connecting to MySQL from the Application
-Under construction.
-
-## Reference
 
 ### Image Details
 
