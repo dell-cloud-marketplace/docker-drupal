@@ -54,7 +54,7 @@ From the Drupal console, log in as user **admin**, password **admin** and start 
 
 ### Image Details
 
-Based on          | [Ricardo Amaro](https://github.com/ricardoamaro/docker-drupal.git)
+Based on          | [docker-drupal](https://github.com/ricardoamaro/docker-drupal.git)
 
 Pre-built Image   | [https://registry.hub.docker.com/u/dell/drupal](https://registry.hub.docker.com/u/dell/drupal)
 
