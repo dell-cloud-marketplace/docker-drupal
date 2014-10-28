@@ -29,7 +29,7 @@ You will see an output like the following:
     ====================================================================
     You can now connect to this MySQL Server using:
 
-      mysql -u admin -pca1w7dUhnIgI --host <host> --port <port>
+      mysql -uadmin -pca1w7dUhnIgI -h<host> -P<port>
 
     =====================================================================
 
@@ -39,19 +39,15 @@ In this case, **ca1w7dUhnIgI** is the password allocated to the admin user. Make
 
 ### Test your deployment:
 
-You can test your deployment by accessing Drupal console at:
+You can test your deployment by accessing the Drupal console at:
 
     http://localhost:8080
     
-or 
-
-    https://localhost
-    
-Before accessing the Drupal console through HTTPS, you must accept the SSL certificate.
-
-You can also test the application with cURL command:
+or with cURL:
 
     curl http://localhost:8080/
+    
+Before accessing the Drupal console through HTTPS, which is advisable when maintaining your site, you must accept the SSL certificate.
 
 ## Complete the installation
 From the Drupal console, log in as user **admin**, password **admin** and start adding content.
