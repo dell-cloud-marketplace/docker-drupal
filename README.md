@@ -16,7 +16,7 @@ PHP        | see [docker-lamp-base](https://github.com/dell-cloud-marketplace/do
 ## Usage
 
 ### Start the Container
-Start your image binding host port 8080 to container port 80, and 443 in both:
+Start your container binding host port 8080 to container port 80, and 443 in both:
 
     docker run -d -t -p 8080:80 -p 443:443 -p 3306:3306 dell/drupal
     
