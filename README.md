@@ -20,7 +20,7 @@ Start your container binding host port 8080 to container port 80, and 443 in bot
 
     docker run -d -t -p 8080:80 -p 443:443 -p 3306:3306 dell/drupal
     
-You will have to check the container logs, in order to get the MySQL root and drupal password:
+You will have to check the container logs, in order to get the MySQL password:
 
     docker logs <container_id>
 
