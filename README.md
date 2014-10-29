@@ -2,7 +2,7 @@
 This blueprint installs a [Docker](http://docker.io) container for [Drupal](https://www.drupal.org/) – an open source content management platform that uses a range of technologies as part of its framework to build web sites.
 
 ## Components
-The stack comprises the following components (some are obtained through [dell/lamp-base](https://registry.hub.docker.com/u/dell/lamp-base)):
+The stack comprises the following components (some are obtained through [dell/lamp-base](https://github.com/dell-cloud-marketplace/docker-lamp-base)):
 
 Name       | Version                 | Description
 -----------|-------------------------|------------------------------
@@ -24,7 +24,7 @@ You will have to check the container logs, in order to get the MySQL root and dr
 
     docker logs <container_id>
 
-You will see an output like the following:
+You will see some output like the following:
 
     ====================================================================
     You can now connect to this MySQL Server using:
