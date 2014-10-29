@@ -1,5 +1,5 @@
 # docker-drupal
-This blueprint installs a [Docker](http://docker.io) container for [Drupal](https://www.drupal.org/) – an open source content management platform that uses a range of technologies as part of its framework to build web sites.
+This image installs a [Docker](http://docker.io) container for [Drupal](https://www.drupal.org/) – an open source content management platform that uses a range of technologies as part of its framework to build web sites.
 
 ## Components
 The stack comprises the following components (some are obtained through [dell/lamp-base](https://github.com/dell-cloud-marketplace/docker-lamp-base)):
