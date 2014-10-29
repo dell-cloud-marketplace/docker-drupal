@@ -12,30 +12,34 @@ if [[ ! -d $VOLUME_HOME/mysql ]]; then
 else
     echo "=> Using an existing volume of MySQL"
 fi
+ 
+# Install Drupal
+if [ ! -f /var/www/html/sites/default/settings.php ]; then
 
-if [ ! -f /var/www/sites/default/settings.php ]; then
+    # Start MySQL
+    /usr/bin/mysqld_safe > /dev/null 2>&1 &
 
-    # Start mysql
-    /usr/bin/mysqld_safe & 
-    sleep 10s
+    RET=1
+    while [[ RET -ne 0 ]]; do
+        echo "=> Waiting for confirmation of MySQL service startup"
+        sleep 5
+        mysql -uroot -e "status" > /dev/null 2>&1
+        RET=$?
+    done
 
     DRUPAL_DB="drupal"
 
-    # Generate random passwords
-    MYSQL_PASSWORD=`pwgen -c -n -1 12`
+    # Generate a random password for the drupal MySQL user.
     DRUPAL_PASSWORD=`pwgen -c -n -1 12`
 
-    # The passwords will show up in the logs. 
-    echo "MySQL root user password:" $MYSQL_PASSWORD
+    echo "========================================================================"
+    echo
     echo "MySQL drupal user password:" $DRUPAL_PASSWORD
-    echo $MYSQL_PASSWORD > /mysql-root-pw.txt
-    echo $DRUPAL_PASSWORD > /drupal-db-pw.txt
-
-    # Set the root user password
-    mysqladmin -u root password $MYSQL_PASSWORD 
+    echo
+    echo "========================================================================"
 
     # Create the database
-    mysql -uroot -p$MYSQL_PASSWORD -e "CREATE DATABASE drupal; \
+    mysql -uroot -e "CREATE DATABASE drupal; \
             GRANT ALL PRIVILEGES ON drupal.* TO 'drupal'@'localhost' \
             IDENTIFIED BY '$DRUPAL_PASSWORD'; FLUSH PRIVILEGES;"
 
@@ -45,15 +49,13 @@ if [ ! -f /var/www/sites/default/settings.php ]; then
     sed -i 's/AllowOverride Limit/AllowOverride All/g' \
             /etc/apache2/sites-available/000-default.conf
 
-    a2enmod rewrite vhost_alias
-
     # Install Drupal
-    cd /var/www/
+    cd /var/www/html
     drush site-install standard -y --account-name=admin --account-pass=admin \
             --db-url="mysqli://drupal:${DRUPAL_PASSWORD}@localhost:3306/drupal"
     
-    killall mysqld
-    sleep 10s
+    mysqladmin -uroot shutdown
+    sleep 5
 fi
 
-supervisord -n
+exec supervisord -n
