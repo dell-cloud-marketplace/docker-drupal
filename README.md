@@ -18,11 +18,11 @@ PHP        | see [docker-lamp-base](https://github.com/dell-cloud-marketplace/do
 ### Start the Container
 Start your container binding host port 8080 to container port 80, and 443 in both:
 
-    docker run -d -t -p 8080:80 -p 443:443 -p 3306:3306 dell/drupal
+    sudo docker run -d -t -p 8080:80 -p 443:443 -p 3306:3306 dell/drupal
     
 You will have to check the container logs, in order to get the MySQL password:
 
-    docker logs <container_id>
+    sudo docker logs <container_id>
 
 You will see some output like the following:
 
