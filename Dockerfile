@@ -1,14 +1,21 @@
-FROM dell/lamp-base:1.0 
+FROM dell/lamp-base:1.1
 MAINTAINER Dell Cloud Market Place <Cloud_Marketplace@dell.com>
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install php5-gd 
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install php5-memcache 
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install memcached 
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install drush 
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install mc
+# Update existing packages.
+RUN apt-get update 
+
+# Install packages
+RUN DEBIAN_FRONTEND=noninteractive \
+    apt-get -y install \
+        php5-gd \
+        php5-memcache \
+        memcached \
+        drush \
+        mc
+RUN apt-get -y clean
 
 # Add scripts
-ADD ./run.sh /run.sh
+COPY ./run.sh /run.sh
 RUN chmod +x /run.sh
 
 # Retrieve Drupal and configure the site folder.
