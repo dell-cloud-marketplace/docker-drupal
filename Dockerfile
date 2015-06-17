@@ -1,4 +1,4 @@
-FROM dell/lamp-base:1.1
+FROM dell/lamp-base:1.2
 MAINTAINER Dell Cloud Market Place <Cloud_Marketplace@dell.com>
 
 # Update existing packages.
@@ -25,6 +25,10 @@ RUN rm -rf /var/www/html; cd /var; drush dl drupal; \
 RUN chmod a+w /var/www/html/sites/default; \
     mkdir /var/www/html/sites/default/files; \
     chown -R www-data:www-data /var/www/html
+
+# Environmental variables.
+ENV DRUPAL_PASS ""
+ENV ADMIN_PASS ""
 
 EXPOSE 80 443 3306
 
