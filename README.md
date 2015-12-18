@@ -52,6 +52,16 @@ Before accessing the Drupal console through HTTPS, which is advisable when maint
 ## Complete the installation
 From the Drupal console, log in as user **admin**, password **admin** and start adding content.
 
+## Reference
+
+### Environmental Variables
+
+Variable    | Default  | Description
+------------|----------|-----------------------------------
+MYSQL_PASS  | *random* | Password for MySQL user **admin**
+DRUPAL_PASS | *random* | Password for MySQL user **drupal**
+ADMIN_PASS  | *random* | Password for Drupal user **admin**
+
 ### Image Details
 
 Based on          | [docker-drupal](https://github.com/ricardoamaro/docker-drupal.git)

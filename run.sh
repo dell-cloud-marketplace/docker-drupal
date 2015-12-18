@@ -29,8 +29,8 @@ if [ ! -f /var/www/html/sites/default/settings.php ]; then
 
     DRUPAL_DB="drupal"
 
-    # Generate a random password for the drupal MySQL user.
-    DRUPAL_PASSWORD=`pwgen -c -n -1 12`
+    # If not supplied, generate a random password for the drupal MySQL user.
+    DRUPAL_PASSWORD=${DRUPAL_PASS:-$(pwgen -s 12 1)}
 
     echo "========================================================================"
     echo
@@ -49,9 +49,19 @@ if [ ! -f /var/www/html/sites/default/settings.php ]; then
     sed -i 's/AllowOverride Limit/AllowOverride All/g' \
             /etc/apache2/sites-available/000-default.conf
 
+    # If not supplied, generate a random password for the admin user.
+    ADMIN_PASSWORD=${ADMIN_PASS:-$(pwgen -s 12 1)}
+
+    echo
+    echo "========================================================================"
+    echo
+    echo "Drupal admin user password:" $ADMIN_PASSWORD
+    echo
+    echo "========================================================================"
+
     # Install Drupal
     cd /var/www/html
-    drush site-install standard -y --account-name=admin --account-pass=admin \
+    drush site-install standard -y --account-name=admin --account-pass=$ADMIN_PASSWORD \
             --db-url="mysqli://drupal:${DRUPAL_PASSWORD}@localhost:3306/drupal"
     
     mysqladmin -uroot shutdown
